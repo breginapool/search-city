@@ -13,7 +13,7 @@ displayAll()
 async function fetchData() {
   let url = endpoint
   try {
-    let response = await fetch(url) //returns a promise, when request completes, the resource is available
+    let response = await fetch(url) //returns a promise, when the request completes, the resource is available
     return await response.json() //handle the response (resource object)
   } catch (error) {
     console.log(error)
@@ -36,14 +36,14 @@ async function displayAll() {
 }
 
 async function findMatches(wordToMatch) {
-  let regex = new RegExp(wordToMatch, 'gi')
+  let regex = new RegExp(wordToMatch, 'gi') //produces a variable in regex form eg. /california/gi
   let data = await fetchData()
   return data.filter((place) => {
     return place.city.match(regex) || place.state.match(regex)
   })
 }
 
-//function that listens for keyup/change event, then invokes findMatches function to display matches
+//function that listens for keyup/change event, then invokes findMatches function to display the matches
 async function displayMatches() {
   let matchArray = await findMatches(this.value)
   let html = ''
